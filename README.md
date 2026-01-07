@@ -262,3 +262,8 @@ iv. English‑only TTS:
 
 Despite these limitations, the project demonstrates a realistic end‑to‑end architecture for a local voice assistant and translator, including mic streaming, ASR, RAG, LLM orchestration, TTS, and stateful mode control.
 
+###Demo video
+link : https://github.com/AKilalours/local-offline-voice-translator-rag-assistant/raw/main/demo/local-offline-voice-translator-rag-assistant-demo.mp4
+
+the above is the demo video link for the project 
+
