@@ -1,18 +1,17 @@
-# virtualenv / local env
+# OS junk
+.DS_Store
+
+# Environments
 venv/
 .venv/
 
-# python
+# Python cache
 __pycache__/
 *.pyc
 
-# mac
-.DS_Store
-
-# local artifacts
+# Build artifacts / local indexes
 rag_index/
-rag_index_dense/*.wav
+rag_index_dense/
+output_tts.wav
 *.log
 
-# model caches (optional; keep repo clean)
-.cache/
