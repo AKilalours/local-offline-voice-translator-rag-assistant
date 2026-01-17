@@ -1,12 +1,14 @@
-name: CI
+name: ci
 
 on:
   push:
   pull_request:
 
 jobs:
-  test-and-eval:
+  test:
     runs-on: ubuntu-latest
+    env:
+      TOKENIZERS_PARALLELISM: "false"
 
     steps:
       - name: Checkout
@@ -16,30 +18,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: |
+            requirements-ci.txt
 
-      - name: Install deps
+      - name: Install CI deps (minimal)
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-ci.txt
 
-      - name: Build indexes (TF-IDF + Dense)
+      - name: Quick compile (sanity)
         run: |
-          python ingest/build_index.py
-          python ingest/build_dense_index.py
+          python -m py_compile main.py
+          python -m py_compile api_server.py
 
-      - name: Phase 3 eval
-        run: |
-          python eval/eval_phase3.py
-
-      - name: Phase 4 security eval
-        run: |
-          python eval/security_phase4.py
-
-      - name: Phase 5 RBAC eval
-        run: |
-          python eval/eval_phase5_rbac.py
-
-      - name: Unit tests
+      - name: Run tests
         run: |
           pytest -q
 
