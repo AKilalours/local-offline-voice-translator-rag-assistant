@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Build indexes (TF-IDF + Dense)
+        run: |
+          python ingest/build_index.py
+          python ingest/build_dense_index.py
+
+      - name: Phase 3 eval
+        run: |
+          python eval/eval_phase3.py
+
+      - name: Phase 4 security eval
+        run: |
+          python eval/security_phase4.py
+
+      - name: Phase 5 RBAC eval
+        run: |
+          python eval/eval_phase5_rbac.py
+
+      - name: Unit tests
+        run: |
+          pytest -q
+

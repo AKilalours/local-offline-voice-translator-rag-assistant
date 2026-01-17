@@ -1,0 +1,11 @@
+langchain-community==0.3.7
+langchain==0.3.7
+faiss-cpu
+sentence-transformers
+fastapi
+uvicorn
+requests
+numpy
+scikit-learn
+pytest
+
