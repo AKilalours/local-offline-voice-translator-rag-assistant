@@ -1,0 +1,19 @@
+Glossary (Project-Specific)
+
+RAG (Retrieval-Augmented Generation):
+A method where the assistant retrieves relevant text chunks from local documents and uses them as context for the LLM to produce a grounded answer. This project requires chunk-level citations (chunk_id) for grounded answers.
+
+ASR (Automatic Speech Recognition):
+Speech-to-text. Converts microphone audio into text using Faster-Whisper.
+
+TTS (Text-to-Speech):
+Text-to-audio. Converts text responses into speech using Coqui TTS (VITS).
+
+Ollama:
+A local model runtime used to run LLMs offline (e.g., Mistral, Llama3). This project calls Ollama via an HTTP API.
+
+FAISS:
+A vector index used for fast similarity search over document chunks. In this project it stores TF-IDF vectors.
+
+Strict mode (Grounded only):
+When enabled, the assistant refuses questions not supported by the local documents, instead of using general fallback.

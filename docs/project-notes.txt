@@ -1,0 +1,34 @@
+Project: Local Offline Voice Translator + RAG Assistant
+
+Purpose
+- A fully local voice assistant that runs offline on a laptop.
+- Supports chat mode (RAG + LLM) and translation mode (LLM translation).
+
+Core pipeline
+1) Microphone audio capture (sounddevice)
+2) ASR (speech-to-text) using Faster Whisper
+3) If chat mode:
+   - Retrieve relevant context from local docs (TF-IDF + FAISS)
+   - Query local LLM via Ollama (mistral)
+4) If translation mode:
+   - Translate the recognized text into the selected target language using the local LLM (Ollama)
+5) TTS (text-to-speech) using Coqui TTS (VITS) and play audio
+
+Definitions
+- ASR (Automatic Speech Recognition): speech-to-text. Converts spoken audio into text.
+- TTS (Text-to-Speech): text-to-audio. Converts text into synthesized speech.
+- Speech-to-text vs text-to-speech:
+  - Speech-to-text (ASR) listens and outputs text
+  - Text-to-speech (TTS) reads text and outputs audio
+- LLM: Large Language Model. In this project, the LLM runs locally via Ollama (model: mistral).
+- RAG: Retrieval-Augmented Generation. The assistant retrieves local doc chunks and uses them as context for the LLM.
+
+Voice commands (control)
+- "start translation mode" -> switches to translation mode
+- "stop translation mode" / "exit translation mode" -> switches back to chat mode
+- "translate into <language>" -> sets target language and switches to translation mode
+- "what language are you translating into" -> assistant speaks the current target language
+
+Notes
+- In grounded mode, the assistant should answer only if supported by retrieved context; otherwise it refuses.
+

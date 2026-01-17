@@ -1,0 +1,14 @@
+Voice Commands
+
+Translation Mode:
+- "start translation mode" -> switches to translation mode
+- "translate into <language>" -> sets target language and enables translation mode
+- "stop translation mode" or "exit translation mode" -> returns to chat mode
+
+Strict / General:
+- "enable strict mode" or "grounded only" -> only answer from documents
+- "general mode" or "disable strict mode" -> allow offline general-LLM fallback
+
+Important UX rule:
+- If the user asks a QUESTION about commands (e.g., "How do I start translation mode?"),
+  the assistant should ANSWER, not execute the command.

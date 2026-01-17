@@ -1,0 +1,15 @@
+Security Notes (Portfolio)
+
+Threat model:
+- Prompt injection: user tries to override grounding instructions
+- Data exfiltration: user tries to make the model output non-retrieved content
+
+Current mitigations:
+- Grounded prompt: use ONLY provided context
+- Citation requirement: answer must reference chunk_id
+- Refusal policy: if unsupported, respond with the refusal string
+
+Planned upgrades:
+- Automated injection test suite (success rate metric)
+- Exfiltration tests (leak rate metric)
+- Retrieval-time access control via metadata filters (RBAC/ABAC)

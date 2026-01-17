@@ -1,0 +1,17 @@
+python-dotenv==1.0.1
+openai==1.57.4
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-openai==0.2.8
+faiss-cpu==1.9.0.post1
+tiktoken==0.8.0
+
+sounddevice==0.5.1
+soundfile==0.13.0
+whisper==1.1.10
+torch==2.5.1
+
+coqui-tts==0.25.2
+ruff==0.7.1
+pytest==8.3.4
+

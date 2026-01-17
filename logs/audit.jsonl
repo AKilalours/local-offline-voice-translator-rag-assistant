@@ -1,0 +1,5 @@
+{"type": "api_ask", "used": "RAG", "query": "string", "latency_ms": 22977.522167027928, "refused": false, "citations": ["project-notes.txt::chunk1", "architecture.txt::chunk0", "glossary.txt::chunk0"], "ts": 1768606518.310766}
+{"type": "api_translate", "src": "string", "lang": "string", "latency_ms": 20807.572916033678, "ts": 1768606528.231023}
+{"type": "ask", "query": "What is ASR?", "used": "RAG", "latency_ms": 8745.022208953742, "refused": false, "ts": 1768606676.5440671}
+{"type": "api_translate", "src": "string", "lang": "string", "latency_ms": 3126.3576669734903, "ts": 1768606727.775685}
+{"type": "api_ask", "used": "GENERAL", "query": "string", "latency_ms": 12281.565750017762, "refused": false, "citations": [], "ts": 1768606731.078958}

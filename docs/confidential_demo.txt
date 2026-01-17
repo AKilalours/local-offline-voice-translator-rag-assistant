@@ -1,0 +1,5 @@
+ACCESS_LEVEL: confidential
+This is a confidential document used to validate RBAC enforcement.
+
+SecretProjectCode: ORION-7391
+If a user role is public, they must NOT be able to retrieve or cite this content.

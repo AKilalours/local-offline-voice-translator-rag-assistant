@@ -1,0 +1,18 @@
+# virtualenv / local env
+venv/
+.venv/
+
+# python
+__pycache__/
+*.pyc
+
+# mac
+.DS_Store
+
+# local artifacts
+rag_index/
+rag_index_dense/*.wav
+*.log
+
+# model caches (optional; keep repo clean)
+.cache/

@@ -1,0 +1,16 @@
+Evaluation Plan (Phase 1)
+
+Metrics:
+1) Retrieval Recall@k on answerable questions:
+   Does the expected source appear in the retrieved sources?
+
+2) Unanswerable refusal accuracy:
+   For questions that should not be answered by docs, does the system refuse?
+
+3) (Optional) Citation presence:
+   If generation runs, does the answer include chunk_id citations?
+
+Procedure:
+- Maintain eval/rag_qa.jsonl with answerable and unanswerable questions.
+- Run eval/eval_phase1.py to compute metrics.
+- Tune rag_min_similarity and coverage parameters based on results.

@@ -1,0 +1,15 @@
+Architecture Overview
+
+Project summary:
+This project is a Local Offline Voice Translator + RAG Assistant that runs fully offline on a laptop.
+It supports two modes:
+1) Chat mode: grounded Q/A over local documents with citations (RAG + LLM)
+2) Translation mode: speech-to-speech translation into a target language
+
+Primary pipeline:
+Microphone -> VAD -> ASR (Faster-Whisper) -> (Chat: Retrieval + Ollama) OR (Translate: Ollama) -> TTS (Coqui)
+
+Key system guarantees:
+- Grounded answers require retrieved context + chunk_id citations, otherwise the system refuses.
+- Unanswerable and policy-blocked queries refuse deterministically.
+- Offline constraint: no real-time web/news/market access.

@@ -1,0 +1,6 @@
+Limitations
+
+- Retrieval is TF-IDF baseline (fast, CPU friendly). Semantic embeddings + reranking are future work.
+- VAD is RMS-based and can be sensitive to noise.
+- No echo cancellation; mic capture is paused during TTS as a mitigation.
+- General fallback is offline-only and cannot access real-time data.
