@@ -1,4 +1,4 @@
-# Offline Voice Translator + RAG Assistant (Whisper + Ollama + Coqui TTS)
+# local-offline-voice-translator-rag-assistant (Whisper + Ollama + Coqui TTS)
 
 A local-first **speech-to-speech translator** and **document-grounded RAG assistant** that runs on your machine using open-source components.  
 It supports:
