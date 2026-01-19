@@ -17,24 +17,26 @@ This project is built to demonstrate **ML/LLM system engineering**: retrieval ev
 This is not a “hello-world voice bot.” It includes production-style safeguards and measurable quality gates:
 
 - **Retrieval evaluation harness** (recall@k on answerable questions)
-- **Latency benchmarks** (median and p95 for dense retrieval, rerank, and LLM)
+- **Latency benchmarks** (median and p95 for retrieval, rerank, LLM)
 - **Security harness** (prompt-injection + exfil attempts must refuse)
-- **RBAC / access-control at retrieval time** (public users cannot retrieve confidential chunks)
-- **CI** (pytest + GitHub Actions)
+- **RBAC enforcement at retrieval time** (public users cannot retrieve confidential chunks)
+- **API packaging + CI** (FastAPI + pytest + GitHub Actions)
+
 
 ---
 
 ## Architecture (high level)
 
-**Audio pipeline**  
+### Audio pipeline
 Microphone → VAD (RMS threshold) → ASR (Faster-Whisper) → decision router
 
-**Chat Mode (RAG)**  
-User query → Retrieval (Dense embeddings + FAISS) → optional rerank (Cross-Encoder) →  
+### Chat Mode (RAG)
+User query → Retrieval (embeddings + FAISS) → optional rerank (Cross-Encoder) →  
 Context prompt (chunk headers + text) → Local LLM (Ollama) → **citation integrity check** → output
 
-**Translation Mode**  
-User speech → translation prompt (Ollama) → post-processing → output
+### Translation Mode
+User speech → translation prompt (Ollama) → post-processing → TTS output
+
 
 ---
 
@@ -48,21 +50,22 @@ User speech → translation prompt (Ollama) → post-processing → output
   - TF-IDF + FAISS (baseline)
   - Dense embeddings + FAISS
   - Dense + Cross-Encoder rerank (default)
-- **Coverage gate**: refuses when retrieved context does not cover key query terms
-- **Citation requirement**: answers must cite `chunk_id=` or refuse
-- **Citation integrity**: cannot cite chunk IDs that were not retrieved
-
+- **Coverage gate**: refuse if retrieved context does not cover key query intent/terms.
+- **Citation requirement**: Answers must include **valid citations** like `chunk_id=<id>` **or refuse**.
+- **Citation integrity:** the assistant cannot cite chunk IDs that were not retrieved.
+  
 ### 3) Translation mode (speech-to-speech)
 - Voice commands for mode switching and target language selection
 - Everything spoken in translation mode is translated **except** control commands
 
 ### 4) Offline constraints
-- No live web access: news/weather/market queries return an offline limitation message
+- Offline constraint:** no live web access — news/weather/market queries return a clear offline limitation.
+
 
 ### 5) Phase 5 RBAC enforcement (retrieval-time access control)
 - Chunks are labeled (e.g., `public`, `confidential`)
-- User role determines what chunks can be retrieved
-- Demonstrated via automated RBAC eval script
+- The user role determines which chunks are eligible for retrieval
+- Demonstrated via an automated RBAC evaluation script
 
 ### 6) FastAPI integration
 - `/ask`: grounded answers with citations
@@ -103,22 +106,26 @@ User speech → translation prompt (Ollama) → post-processing → output
 - Python 3.12+
 - Ollama installed and running
 - A local model pulled (example: `mistral`)
+- (Optional) System deps for audio/TTS depending on OS
 
-```bash
-ollama serve
-ollama pull mistral
-```
 ---
 
-# Install Dependencies
+# Quick Start
+
+# 1. Create env + install
 
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
 ---
+# 2. Start Ollama + pull a model
 
-# Build indexes
+ollama serve
+ollama pull mistral
+---
+
+# 3. Build indexes
 
 TF-IDF baseline index
 
@@ -130,7 +137,7 @@ Dense index (FAISS + embessings)
 
 ---
 
-# Run: Voice APP (interactive)
+# 4. Run: Voice APP (interactive)
 
 - python main.py
 
@@ -148,11 +155,24 @@ Voice commands:
 
 Open :
 
-- Swagger UI : http://127.0.0.1:8000/docs
+Swagger UI : http://127.0.0.1:8000/docs
+
+
+Example:/ ask
+
+- curl -s http://127.0.0.1:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"text":"What is RAG?","role":"public"}'
+
+Example:/ translate
+- curl -s http://127.0.0.1:8000/translate \
+  -H "Content-Type: application/json" \
+  -d '{"text":"Good morning, have a good day.","target_lang":"French"}'
+
 
 RBAC via API
 
-Use a request field like role (e.g., public vs admin) to enforce which documents can be retrieved.
+Pass role (e.g., public vs admin) to enforce which labeled chunks can be retrieved.
 ---
 
 # Evaluation & Benchmarks
@@ -171,13 +191,13 @@ Unit tests
 
 ---
 
-# What this demonstrates to recruiters
+# What this demonstrates 
 
 •	End-to-end voice + LLM system integration (ASR, translation, TTS)
 •	RAG engineering discipline: retrieval evaluation, latency benchmarking
 •	Security-minded design: deterministic refusal + injection/exfil resilience
 •	Real access control: RBAC at retrieval time
-•	API packaging + CI: deployable, testable, and maintainable
+•	Deployable packaging: FastAPI endpoints + CI-ready tests
 
 ---
  
@@ -186,4 +206,4 @@ Limitations / Next improvements
 •	Replace RMS VAD with a more robust VAD (e.g., WebRTC VAD)
 •	Add structured telemetry (JSON logs), traces, and request IDs
 •	Add “citation faithfulness” scoring and regression gating in CI
-
+---
