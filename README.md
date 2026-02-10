@@ -9,7 +9,9 @@ It supports:
 
 This project is built to demonstrate **ML/LLM system engineering**: retrieval evaluation, latency benchmarks, security/refusal harness, and **RBAC enforcement**.
 
-**Demo link** :
+**Demo link** : https://drive.google.com/drive/folders/1NNxKn7dPizFucjTRPZCNglUZFNbh4CPI?usp=sharing
+
+This drive link has the Demo video link of how it works
 ---
 
 ## Why this project is not a toy
