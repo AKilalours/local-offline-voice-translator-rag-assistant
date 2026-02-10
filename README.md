@@ -5,7 +5,7 @@ It supports:
 
 - **Chat Mode (RAG)**: answers questions from local docs with **chunk-level citations** and deterministic refusals when unsupported.
 - **Translation Mode**: translates whatever you say (except control commands) into a chosen target language.
-- **API Mode (FastAPI)**: exposes `/ask` (RAG) + `/translate` endpoints for integration.
+- **API Mode (FastAPI)**: exposes `/ask` (RAG) + `/translate` endpoints for integration. 
 
 This project is built to demonstrate **ML/LLM system engineering**: retrieval evaluation, latency benchmarks, security/refusal harness, and **RBAC enforcement**.
 
