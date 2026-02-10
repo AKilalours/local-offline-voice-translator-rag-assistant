@@ -206,4 +206,5 @@ Limitations / Next improvements
 •	Replace RMS VAD with a more robust VAD (e.g., WebRTC VAD)
 •	Add structured telemetry (JSON logs), traces, and request IDs
 •	Add “citation faithfulness” scoring and regression gating in CI
+•	Working on more than one line 
 ---
