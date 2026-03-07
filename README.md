@@ -1,13 +1,25 @@
-# Local Offline Voice Translator & RAG Assistant
+<div align="center">
+  <img src="local_rag_coverimage.png" width="860"/>
+  <h1>Local Offline Voice Translator & RAG Assistant</h1>
+  <p><i>Whisper · Ollama · Coqui TTS · FastAPI · FAISS · Cross-Encoder</i></p>
+  <p>
+    <a href="https://drive.google.com/drive/folders/1NNxKn7dPizFucjTRPZCNglUZFNbh4CPI?usp=sharing"><b>▶ Live Demo</b></a> ·
+    <a href="https://github.com/AKilalours/local-offline-voice-translator-rag-assistant"><b>⌥ Source Code</b></a>
+  </p>
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python"/>
+    <img src="https://img.shields.io/badge/Ollama-Mistral-purple?style=flat-square"/>
+    <img src="https://img.shields.io/badge/FAISS-Vector_DB-orange?style=flat-square"/>
+    <img src="https://img.shields.io/badge/FastAPI-Serving-green?style=flat-square&logo=fastapi"/>
+    <img src="https://img.shields.io/badge/CI-GitHub_Actions-black?style=flat-square&logo=github"/>
+    <img src="https://img.shields.io/badge/Cost-$0.00%2Frequest-brightgreen?style=flat-square"/>
+  </p>
+  <blockquote>
+    A production-grade, fully offline speech-to-speech translator and document-grounded RAG assistant demonstrating ML system engineering discipline — retrieval quality, latency SLOs, security hardening, RBAC enforcement, and CI/CD.
+  </blockquote>
+</div>
 
-**Whisper · Ollama · Coqui TTS · FastAPI · FAISS · Cross-Encoder**
-
-> **Goal:** A production-grade, fully offline speech-to-speech translator and document-grounded RAG assistant demonstrating ML system engineering discipline — retrieval quality, latency SLOs, security hardening, RBAC enforcement, and CI/CD.
-
-**Demo:** [Google Drive Demo Video](https://drive.google.com/drive/folders/1NNxKn7dPizFucjTRPZCNglUZFNbh4CPI?usp=sharing) · **Repo:** [GitHub](https://github.com/AKilalours/local-offline-voice-translator-rag-assistant)
-
-![Cover](local_rag_coverimage.png)
-
+---
 ---
 
 ## SLOs (Service Level Objectives)
