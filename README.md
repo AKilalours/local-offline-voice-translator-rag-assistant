@@ -29,23 +29,23 @@
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                      INGEST PIPELINE                         │
-│  Raw Docs → Chunking → TF-IDF Index ────────────────────►   │
+│  Raw Docs → Chunking → TF-IDF Index ────────────────────►    │
 │                      → Dense Embeddings → FAISS Index ────►  │
-│                        (chunk labels: public / confidential)  │
+│                        (chunk labels: public / confidential) │
 └──────────────────────────────────────────────────────────────┘
                  │                        │
                  ▼                        ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                     SERVING PIPELINE                         │
-│  Mic → VAD (RMS) → Faster-Whisper ASR → Decision Router     │
+│  Mic → VAD (RMS) → Faster-Whisper ASR → Decision Router      │
 │                              │                               │
-│           ┌──────────────────┴─────────────────┐            │
+│           ┌──────────────────┴─────────────────┐             │
 │           ▼                                     ▼            │
 │     [RAG / CHAT MODE]              [TRANSLATION MODE]        │
 │                                                              │
-│  Query → RBAC Filter (role)      Speech → Ollama LLM        │
-│        → Dense Retrieval (FAISS) → Post-process             │
-│        → Cross-Encoder Rerank    → Coqui TTS Output         │
+│  Query → RBAC Filter (role)      Speech → Ollama LLM         │
+│        → Dense Retrieval (FAISS) → Post-process              │
+│        → Cross-Encoder Rerank    → Coqui TTS Output          │
 │        → Coverage Gate (refuse if weak)                      │
 │        → Ollama LLM Inference                                │
 │        → Citation Integrity Check                            │
