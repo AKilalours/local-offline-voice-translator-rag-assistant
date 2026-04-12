@@ -20,6 +20,10 @@
 </div>
 
 ---
+## Edge Deployment Summary
+
+Deployed NLP speech-to-speech pipeline entirely on compute-constrained edge hardware (Apple Silicon, CPU-only) — integrating Faster-Whisper ASR, FAISS dense retrieval (p95 ≈ 50 ms), Cross-Encoder reranking, Mistral LLM inference via Ollama, and Coqui TTS — achieving Recall@k = 1.000 across 13 NLP evaluation queries at zero API cost.
+Demonstrates production-grade NLP inference on edge AI hardware under strict latency SLOs and zero cloud compute budget; a concrete example of efficient on-device AI deployment bridging the edge ASIC gap in NLP data engineering.
 ---
 
 ## SLOs (Service Level Objectives)
